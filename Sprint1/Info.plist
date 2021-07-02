@@ -2,10 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Would like to acces the photo library to be able to record the videos on your phone</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Sprint1-Stream</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -26,6 +26,8 @@
 	<string>Sprint1 will use the camera to be able to record the video needed for the live streams</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Sprint1 will use your mic to gather mac recording used for the live stereams</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Would like to acces the photo library to be able to record the videos on your phone</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

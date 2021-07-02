@@ -10,7 +10,9 @@ import AVKit
 import AVFoundation
 import Photos
 import ReplayKit
-class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, RPPreviewViewControllerDelegate {
+import VideoToolbox
+class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, RPPreviewViewControllerDelegate, RPBroadcastControllerDelegate, RPBroadcastActivityViewControllerDelegate{
+ 
     
     
     var captureSession:AVCaptureMultiCamSession!
@@ -22,6 +24,7 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
     var recordingInProgress:Int = 0;
     var assetWriter:AVAssetWriter!
     var screnRecorder:RPScreenRecorder!
+    var broadcastController:RPBroadcastController!
     @IBOutlet weak var recordIcon: UIButton!
     
     @IBOutlet weak var fontView: UIView!
@@ -215,6 +218,7 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
             self.video.stopRecording()
             self.backVideo.stopRecording()
             screenRecording()
+            stopStream();
             self.recordingInProgress += 1
         }else{
             self.recordIcon.setBackgroundImage(UIImage(systemName: "record.circle.fill"), for: .normal)
@@ -226,9 +230,11 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
             self.video.startRecording(to: URL(fileURLWithPath: outPutFilePath), recordingDelegate: self)
             self.backVideo.startRecording(to: URL(fileURLWithPath: outPutFilePath1), recordingDelegate: self)
             screenRecording();
+            startStream()
             self.recordingInProgress += 1
         }
     }
+    
     
     func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
         print("actually started to record")
@@ -319,11 +325,11 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
                     print("Something went wrong when trying to record the screen\(error?.localizedDescription)");
                 }
             }
-            self.screnRecorder.startCapture { (CMSampleBuffer, RPSampleBufferType, Error) in
-                
-            } completionHandler: { (Error) in
-                
-            }
+//            self.screnRecorder.startCapture { (CMSampleBuffer, RPSampleBufferType, Error) in
+//                // to be able to also record the audio when screen recording
+//            } completionHandler: { (Error) in
+//                //something went wrong when trying to start capturing
+//            }
 
         }
     }
@@ -331,6 +337,57 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         previewController.dismiss(animated: true, completion: nil)
     }
+    
+    func startStream(){
+        RPBroadcastActivityViewController.load(withPreferredExtension: "Ponce.Sprint11.sprint1-broadcastSetupUI") { (RPBroadcastActivityViewController, Error) in
+            if(Error != nil){
+                print("there was a problem starting up the activityViewController \(String(describing: Error?.localizedDescription))")
+            }else{
+                print("enterd the show the viewController")
+                RPBroadcastActivityViewController?.delegate = self
+                self.present(RPBroadcastActivityViewController!, animated: true, completion: nil)
+            }
+        }
 
+    }
+    
+    func stopStream(){
+        guard let broadcast = self.broadcastController else {
+            print("Global broadcast controller was not set up before trying to stop the stream")
+            return
+        }
+        broadcast.finishBroadcast{(error) in
+            if(error != nil){
+                print("There was a problem when trying to stop the stream \(String(describing: error?.localizedDescription))")
+            }
+            print("stopping the stream in viewController")
+        }
+    }
+    
+    func broadcastActivityViewController(_ broadcastActivityViewController: RPBroadcastActivityViewController, didFinishWith broadcastController: RPBroadcastController?, error: Error?) {
+        print("Just accepted")
+        if(error != nil){
+            print("There was an error after accepting/declining \(String(describing: error?.localizedDescription))")
+        }
+        guard let broadcast = broadcastController else {
+            print("There was something wrong after accepting the broadcast activity controlelr")
+            return
+        }
+        broadcastActivityViewController.dismiss(animated: true, completion: nil)
+        self.broadcastController = broadcast;
+        DispatchQueue.main.async {
+            self.broadcastController.startBroadcast{(error) in
+                if(error != nil){
+                    print("There was an error when starting the stream \(String(describing: error?.localizedDescription))")
+                }
+                print("starting the stream in viewController")
+            }
+        }
+        
+        
+    }
+    
+    
+    //
 }
 

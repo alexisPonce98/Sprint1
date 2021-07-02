@@ -16,6 +16,13 @@
 		B01F915926858E64005A8F48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B01F915726858E64005A8F48 /* LaunchScreen.storyboard */; };
 		B01F916426858E64005A8F48 /* Sprint1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F916326858E64005A8F48 /* Sprint1Tests.swift */; };
 		B01F916F26858E64005A8F48 /* Sprint1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F916E26858E64005A8F48 /* Sprint1UITests.swift */; };
+		B01F9183268D9A20005A8F48 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B01F9182268D9A20005A8F48 /* ReplayKit.framework */; };
+		B01F9186268D9A20005A8F48 /* SampleHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F9185268D9A20005A8F48 /* SampleHandler.swift */; };
+		B01F918D268D9A20005A8F48 /* ReplayKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B01F9182268D9A20005A8F48 /* ReplayKit.framework */; };
+		B01F918F268D9A20005A8F48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B01F918E268D9A20005A8F48 /* UIKit.framework */; };
+		B01F9192268D9A20005A8F48 /* BroadcastSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B01F9191268D9A20005A8F48 /* BroadcastSetupViewController.swift */; };
+		B01F9196268D9A20005A8F48 /* sprint1_broadcastSetupUI.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B01F918C268D9A20005A8F48 /* sprint1_broadcastSetupUI.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		B01F9199268D9A20005A8F48 /* sprint1_broadcast.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B01F9180268D9A20005A8F48 /* sprint1_broadcast.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,7 +40,36 @@
 			remoteGlobalIDString = B01F914526858E63005A8F48;
 			remoteInfo = Sprint1;
 		};
+		B01F9194268D9A20005A8F48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B01F913E26858E63005A8F48 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B01F918B268D9A20005A8F48;
+			remoteInfo = sprint1_broadcastSetupUI;
+		};
+		B01F9197268D9A20005A8F48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B01F913E26858E63005A8F48 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B01F917F268D9A20005A8F48;
+			remoteInfo = sprint1_broadcast;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B01F919A268D9A20005A8F48 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B01F9199268D9A20005A8F48 /* sprint1_broadcast.appex in Embed App Extensions */,
+				B01F9196268D9A20005A8F48 /* sprint1_broadcastSetupUI.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		B01F914626858E63005A8F48 /* Sprint1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sprint1.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -51,6 +87,14 @@
 		B01F916A26858E64005A8F48 /* Sprint1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Sprint1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B01F916E26858E64005A8F48 /* Sprint1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sprint1UITests.swift; sourceTree = "<group>"; };
 		B01F917026858E64005A8F48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B01F9180268D9A20005A8F48 /* sprint1_broadcast.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = sprint1_broadcast.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B01F9182268D9A20005A8F48 /* ReplayKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReplayKit.framework; path = System/Library/Frameworks/ReplayKit.framework; sourceTree = SDKROOT; };
+		B01F9185268D9A20005A8F48 /* SampleHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleHandler.swift; sourceTree = "<group>"; };
+		B01F9187268D9A20005A8F48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B01F918C268D9A20005A8F48 /* sprint1_broadcastSetupUI.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = sprint1_broadcastSetupUI.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		B01F918E268D9A20005A8F48 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		B01F9191268D9A20005A8F48 /* BroadcastSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BroadcastSetupViewController.swift; sourceTree = "<group>"; };
+		B01F9193268D9A20005A8F48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +119,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B01F917D268D9A20005A8F48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B01F9183268D9A20005A8F48 /* ReplayKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B01F9189268D9A20005A8F48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B01F918D268D9A20005A8F48 /* ReplayKit.framework in Frameworks */,
+				B01F918F268D9A20005A8F48 /* UIKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -84,6 +145,9 @@
 				B01F914826858E63005A8F48 /* Sprint1 */,
 				B01F916226858E64005A8F48 /* Sprint1Tests */,
 				B01F916D26858E64005A8F48 /* Sprint1UITests */,
+				B01F9184268D9A20005A8F48 /* sprint1_broadcast */,
+				B01F9190268D9A20005A8F48 /* sprint1_broadcastSetupUI */,
+				B01F9181268D9A20005A8F48 /* Frameworks */,
 				B01F914726858E63005A8F48 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,6 +158,8 @@
 				B01F914626858E63005A8F48 /* Sprint1.app */,
 				B01F915F26858E64005A8F48 /* Sprint1Tests.xctest */,
 				B01F916A26858E64005A8F48 /* Sprint1UITests.xctest */,
+				B01F9180268D9A20005A8F48 /* sprint1_broadcast.appex */,
+				B01F918C268D9A20005A8F48 /* sprint1_broadcastSetupUI.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,6 +197,33 @@
 			path = Sprint1UITests;
 			sourceTree = "<group>";
 		};
+		B01F9181268D9A20005A8F48 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B01F9182268D9A20005A8F48 /* ReplayKit.framework */,
+				B01F918E268D9A20005A8F48 /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B01F9184268D9A20005A8F48 /* sprint1_broadcast */ = {
+			isa = PBXGroup;
+			children = (
+				B01F9185268D9A20005A8F48 /* SampleHandler.swift */,
+				B01F9187268D9A20005A8F48 /* Info.plist */,
+			);
+			path = sprint1_broadcast;
+			sourceTree = "<group>";
+		};
+		B01F9190268D9A20005A8F48 /* sprint1_broadcastSetupUI */ = {
+			isa = PBXGroup;
+			children = (
+				B01F9191268D9A20005A8F48 /* BroadcastSetupViewController.swift */,
+				B01F9193268D9A20005A8F48 /* Info.plist */,
+			);
+			path = sprint1_broadcastSetupUI;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -141,10 +234,13 @@
 				B01F914226858E63005A8F48 /* Sources */,
 				B01F914326858E63005A8F48 /* Frameworks */,
 				B01F914426858E63005A8F48 /* Resources */,
+				B01F919A268D9A20005A8F48 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				B01F9195268D9A20005A8F48 /* PBXTargetDependency */,
+				B01F9198268D9A20005A8F48 /* PBXTargetDependency */,
 			);
 			name = Sprint1;
 			productName = Sprint1;
@@ -187,6 +283,40 @@
 			productReference = B01F916A26858E64005A8F48 /* Sprint1UITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		B01F917F268D9A20005A8F48 /* sprint1_broadcast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B01F91A0268D9A20005A8F48 /* Build configuration list for PBXNativeTarget "sprint1_broadcast" */;
+			buildPhases = (
+				B01F917C268D9A20005A8F48 /* Sources */,
+				B01F917D268D9A20005A8F48 /* Frameworks */,
+				B01F917E268D9A20005A8F48 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sprint1_broadcast;
+			productName = sprint1_broadcast;
+			productReference = B01F9180268D9A20005A8F48 /* sprint1_broadcast.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		B01F918B268D9A20005A8F48 /* sprint1_broadcastSetupUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B01F919F268D9A20005A8F48 /* Build configuration list for PBXNativeTarget "sprint1_broadcastSetupUI" */;
+			buildPhases = (
+				B01F9188268D9A20005A8F48 /* Sources */,
+				B01F9189268D9A20005A8F48 /* Frameworks */,
+				B01F918A268D9A20005A8F48 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = sprint1_broadcastSetupUI;
+			productName = sprint1_broadcastSetupUI;
+			productReference = B01F918C268D9A20005A8F48 /* sprint1_broadcastSetupUI.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -207,6 +337,12 @@
 						CreatedOnToolsVersion = 12.5;
 						TestTargetID = B01F914526858E63005A8F48;
 					};
+					B01F917F268D9A20005A8F48 = {
+						CreatedOnToolsVersion = 12.5;
+					};
+					B01F918B268D9A20005A8F48 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 				};
 			};
 			buildConfigurationList = B01F914126858E63005A8F48 /* Build configuration list for PBXProject "Sprint1" */;
@@ -225,6 +361,8 @@
 				B01F914526858E63005A8F48 /* Sprint1 */,
 				B01F915E26858E64005A8F48 /* Sprint1Tests */,
 				B01F916926858E64005A8F48 /* Sprint1UITests */,
+				B01F917F268D9A20005A8F48 /* sprint1_broadcast */,
+				B01F918B268D9A20005A8F48 /* sprint1_broadcastSetupUI */,
 			);
 		};
 /* End PBXProject section */
@@ -248,6 +386,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B01F916826858E64005A8F48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B01F917E268D9A20005A8F48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B01F918A268D9A20005A8F48 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -284,6 +436,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B01F917C268D9A20005A8F48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B01F9186268D9A20005A8F48 /* SampleHandler.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B01F9188268D9A20005A8F48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B01F9192268D9A20005A8F48 /* BroadcastSetupViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -296,6 +464,16 @@
 			isa = PBXTargetDependency;
 			target = B01F914526858E63005A8F48 /* Sprint1 */;
 			targetProxy = B01F916B26858E64005A8F48 /* PBXContainerItemProxy */;
+		};
+		B01F9195268D9A20005A8F48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B01F918B268D9A20005A8F48 /* sprint1_broadcastSetupUI */;
+			targetProxy = B01F9194268D9A20005A8F48 /* PBXContainerItemProxy */;
+		};
+		B01F9198268D9A20005A8F48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B01F917F268D9A20005A8F48 /* sprint1_broadcast */;
+			targetProxy = B01F9197268D9A20005A8F48 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -438,16 +616,17 @@
 		B01F917426858E64005A8F48 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LVMK3Q3VT6;
+				DEVELOPMENT_TEAM = 579DX7MBBF;
 				INFOPLIST_FILE = Sprint1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Ponce.Sprint1;
+				PRODUCT_BUNDLE_IDENTIFIER = Ponce.Sprint11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -457,16 +636,17 @@
 		B01F917526858E64005A8F48 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LVMK3Q3VT6;
+				DEVELOPMENT_TEAM = 579DX7MBBF;
 				INFOPLIST_FILE = Sprint1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = Ponce.Sprint1;
+				PRODUCT_BUNDLE_IDENTIFIER = Ponce.Sprint11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -557,6 +737,86 @@
 			};
 			name = Release;
 		};
+		B01F919B268D9A20005A8F48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 579DX7MBBF;
+				INFOPLIST_FILE = sprint1_broadcast/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Ponce.Sprint11.sprint1-broadcast";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B01F919C268D9A20005A8F48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 579DX7MBBF;
+				INFOPLIST_FILE = sprint1_broadcast/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Ponce.Sprint11.sprint1-broadcast";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B01F919D268D9A20005A8F48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 579DX7MBBF;
+				INFOPLIST_FILE = sprint1_broadcastSetupUI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Ponce.Sprint11.sprint1-broadcastSetupUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B01F919E268D9A20005A8F48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 579DX7MBBF;
+				INFOPLIST_FILE = sprint1_broadcastSetupUI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Ponce.Sprint11.sprint1-broadcastSetupUI";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -592,6 +852,24 @@
 			buildConfigurations = (
 				B01F917A26858E64005A8F48 /* Debug */,
 				B01F917B26858E64005A8F48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B01F919F268D9A20005A8F48 /* Build configuration list for PBXNativeTarget "sprint1_broadcastSetupUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B01F919D268D9A20005A8F48 /* Debug */,
+				B01F919E268D9A20005A8F48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B01F91A0268D9A20005A8F48 /* Build configuration list for PBXNativeTarget "sprint1_broadcast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B01F919B268D9A20005A8F48 /* Debug */,
+				B01F919C268D9A20005A8F48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
