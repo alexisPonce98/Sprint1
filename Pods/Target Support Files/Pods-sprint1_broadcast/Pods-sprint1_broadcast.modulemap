@@ -1,0 +1,6 @@
+framework module Pods_sprint1_broadcast {
+  umbrella header "Pods-sprint1_broadcast-umbrella.h"
+
+  export *
+  module * { export * }
+}

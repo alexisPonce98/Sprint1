@@ -11,7 +11,9 @@ import AVFoundation
 import Photos
 import ReplayKit
 import VideoToolbox
-class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, RPPreviewViewControllerDelegate, RPBroadcastControllerDelegate, RPBroadcastActivityViewControllerDelegate{
+import HaishinKit
+import LFLiveKit
+class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AVCaptureVideoDataOutputSampleBufferDelegate, RPPreviewViewControllerDelegate, RPBroadcastControllerDelegate, RPBroadcastActivityViewControllerDelegate, RPScreenRecorderDelegate, LFLiveSessionDelegate{
  
     
     
@@ -25,6 +27,21 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
     var assetWriter:AVAssetWriter!
     var screnRecorder:RPScreenRecorder!
     var broadcastController:RPBroadcastController!
+    
+    
+    var broadcaster:RTMPConnection!
+    var stream:RTMPStream!
+    
+    lazy var session: LFLiveSession = {
+        let audio = LFLiveAudioConfiguration.default()
+        let videoCondif = LFLiveVideoConfiguration.defaultConfiguration(for: .medium3)
+        let session = LFLiveSession(audioConfiguration: audio, videoConfiguration: videoCondif, captureType: LFLiveCaptureTypeMask.inputMaskVideo)!
+        session.delegate = self
+        session.captureDevicePosition = .back
+        session.preView = self.backView
+        session.showDebugInfo = true;
+        return session
+    }()
     @IBOutlet weak var recordIcon: UIButton!
     
     @IBOutlet weak var fontView: UIView!
@@ -203,7 +220,7 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
         
     }
     
-    
+
     @IBAction func record(_ sender: Any) {
         self.screnRecorder = RPScreenRecorder.shared()
         print("Entered the record function")
@@ -217,7 +234,7 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
             print("stop recording" )
             self.video.stopRecording()
             self.backVideo.stopRecording()
-            screenRecording()
+            //screenRecording()
             stopStream();
             self.recordingInProgress += 1
         }else{
@@ -229,8 +246,8 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
             let outPutFilePath1 = (NSTemporaryDirectory() as NSString).appendingPathComponent((outputFileName1 as NSString).appendingPathExtension("mov")!)
             self.video.startRecording(to: URL(fileURLWithPath: outPutFilePath), recordingDelegate: self)
             self.backVideo.startRecording(to: URL(fileURLWithPath: outPutFilePath1), recordingDelegate: self)
-            screenRecording();
             startStream()
+            //screenRecording();
             self.recordingInProgress += 1
         }
     }
@@ -315,24 +332,42 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
     
     func screenRecording(){
         if(self.screnRecorder.isRecording){
-            self.screnRecorder.stopRecording{(viewController, error) in
-                viewController?.previewControllerDelegate = self
-                self.present(viewController!, animated: true, completion: nil)
-            }
-        }else{
-            self.screnRecorder.startRecording{(error) in
+//            self.screnRecorder.stopRecording{(viewController, error) in
+//                viewController?.previewControllerDelegate = self
+//                self.present(viewController!, animated: true, completion: nil)
+//            }
+            self.screnRecorder.stopCapture { (error) in
                 if(error != nil){
-                    print("Something went wrong when trying to record the screen\(error?.localizedDescription)");
+                    print("there was an error when trying to stop the capture")
                 }
             }
-//            self.screnRecorder.startCapture { (CMSampleBuffer, RPSampleBufferType, Error) in
-//                // to be able to also record the audio when screen recording
-//            } completionHandler: { (Error) in
-//                //something went wrong when trying to start capturing
-//            }
+        }else{
+            self.screnRecorder.startCapture { [self] (CMSampleBuffer, RPSampleBufferType, Error) in
+                switch RPSampleBufferType{
+                case .video:
+//                    let CVPixel:CVPixelBuffer = CMSampleBufferGetImageBuffer(CMSampleBuffer)!;
+//                    self.session.pushVideo(CVPixel);
+                    break;
+                case .audioApp:
+                    
+                    break;
+                case .audioMic:
+                    break;
+                    
+                }
+            } completionHandler: { (error) in
+                
+            }
 
+//            self.screnRecorder.startRecording{(error) in
+//                if(error != nil){
+//                    print("Something went wrong when trying to record the screen\(error?.localizedDescription)");
+//                }
+//            }
         }
+        
     }
+
     
     func previewControllerDidFinish(_ previewController: RPPreviewViewController) {
         previewController.dismiss(animated: true, completion: nil)
@@ -346,12 +381,34 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
                 print("enterd the show the viewController")
                 RPBroadcastActivityViewController?.delegate = self
                 self.present(RPBroadcastActivityViewController!, animated: true, completion: nil)
+                
             }
         }
-
+//        RPBroadcastActivityViewController.load { (RPBroadcastActivityViewController, Error) in
+//            if(Error != nil){
+//                print("there was a problem starting up the activityViewController \(String(describing: Error?.localizedDescription))")
+//            }else{
+//                print("enterd the show the viewController")
+//                RPBroadcastActivityViewController?.delegate = self
+//                RPBroadcastActivityViewController?.modalPresentationStyle = .popover
+//                self.present(RPBroadcastActivityViewController!, animated: true, completion: nil)
+//
+//            }
+//        }
+//        self.broadcaster = RTMPConnection()
+//        self.stream = RTMPStream(connection: broadcaster)
+//        self.stream.attachScreen(ScreenCaptureSession(shared: UIApplication.shared))
+//        self.broadcaster?.connect("rtmp://live.restream.io/live/re_4468744_ae3c793ccb92c646bb41")
+//        self.stream.publish("Testing")
+//        let stream = LFLiveStreamInfo()
+//        stream.url = "rtmp://phx.contribute.live-video.net/app/live_205645450_ga3Ys5uQ9B03Fm4ST51SBiehF8Is5s"
+//        stream.url = "rtmp://live.restream.io/live/re_4468744_ae3c793ccb92c646bb41"
+//        session.startLive(stream)
+        
     }
     
     func stopStream(){
+        print("entered stop stream")
         guard let broadcast = self.broadcastController else {
             print("Global broadcast controller was not set up before trying to stop the stream")
             return
@@ -362,6 +419,44 @@ class ViewController: UIViewController, AVCaptureFileOutputRecordingDelegate, AV
             }
             print("stopping the stream in viewController")
         }
+//        self.broadcaster.close()
+//        self.session.stopLive()
+    }
+    
+    
+    func liveSession(_ session: LFLiveSession?, liveStateDidChange state: LFLiveState) {
+        switch state{
+        case .error:
+            print("Live state changed, there was an error")
+            break;
+        case .pending:
+            print("Live state changed, stream is pending \n");
+            break;
+        case .ready:
+            print("Live state changed, stream is ready \n");
+            break;
+        case .start:
+            print("Live state changed, stream has started \n");
+            break;
+        case .stop:
+            print("Live state changed, stream has stopped \n");
+            break;
+        case .refresh:
+            print("Live state changed to refresh?\n");
+            break;
+        @unknown default:
+            print("There was an unknown state change");
+            break;
+        }
+    }
+    
+    
+    func liveSession(_ session: LFLiveSession?, errorCode: LFLiveSocketErrorCode) {
+        print("There was an error: \(errorCode)\n")
+    }
+    
+    func liveSession(_ session: LFLiveSession?, debugInfo: LFLiveDebug?) {
+        print("This is the debug info given from LFLiveSession \(debugInfo)\n")
     }
     
     func broadcastActivityViewController(_ broadcastActivityViewController: RPBroadcastActivityViewController, didFinishWith broadcastController: RPBroadcastController?, error: Error?) {
